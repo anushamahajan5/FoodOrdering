@@ -1,0 +1,18 @@
+<form method="POST">
+    {% csrf_token %}
+    <label for="customer">Select Customer:</label>
+    <select name="customer_id">
+      {% for customer in customers %}
+        <option value="{{ customer.uid }}">{{ customer.name }}</option>
+      {% endfor %}
+    </select>
+    
+    <label for="products">Select Products:</label>
+    {% for product in products %}
+      <input type="checkbox" name="product_ids" value="{{ product.uid }}"> {{ product.product_name }}
+      <input type="number" name="quantities" placeholder="Quantity">
+    {% endfor %}
+    
+    <button type="submit">Create Order</button>
+  </form>
+  
